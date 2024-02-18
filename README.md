@@ -1,6 +1,6 @@
 # Tutorial Pelatihan Cloud 2024
 
-# Daftar Isi
+## Daftar Isi
 - [Resource Group](#resource-group)
     - [Membuat Resource Group](#membuat-resource-group)
     - [Role Assignment](#role-assignment)
@@ -13,17 +13,17 @@
     - [Mengakses Database melalui psql](#mengakses-database-melalui-psql-pada-vm)
     - [Mengakses Database melalui pgAdmin](#mengakses-database-melalui-pgadmin-local)
 
-# Resource Group
-## Membuat Resource Group
-## Role Assignment
+## Resource Group
+### Membuat Resource Group
+### Role Assignment
 
-# Virtual Machine
-## Menyewa dan Mengakses Azure VM Windows
-## Menyewa dan Mengakses Azure VM Linux
-## Mendeploy Aplikasi di Azure VM
+## Virtual Machine
+### Menyewa dan Mengakses Azure VM Windows
+### Menyewa dan Mengakses Azure VM Linux
+### Mendeploy Aplikasi di Azure VM
 
-# Database
-## Membuat Database PostgreSQL di Azure
-## Mengakses Database melalui psql pada VM
-## Mengakses Database melalui pgAdmin Local
+## Database
+### Membuat Database PostgreSQL di Azure
+### Mengakses Database melalui psql pada VM
+### Mengakses Database melalui pgAdmin Local
 
