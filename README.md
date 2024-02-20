@@ -10,8 +10,7 @@
     - [Mendeploy Aplikasi di Azure VM](#mendeploy-aplikasi-di-azure-vm)
 - [Database](#database)
     - [Membuat Database PostgreSQL di Azure](#membuat-database-postgresql-di-azure)
-    - [Mengakses Database melalui psql](#mengakses-database-melalui-psql-pada-vm)
-    - [Mengakses Database melalui pgAdmin](#mengakses-database-melalui-pgadmin-local)
+    - [Mengakses Database PostgreSQL](#mengakses-database-postgresql-melalui-psql-di-vm-ubuntu)
 
 ## Resource Group
 Setiap resource yang akan kita buat harus terikat kepada suatu resource group. Resource group berguna untuk mengelompokkan resource sejenis sehingga dapat diberi konfigurasi, subscription, dan hak akses serupa. Cara pengelompokan resource bebas mengikuti kebutuhan pengguna.
@@ -104,10 +103,29 @@ Salah satu fungsi Virtual Machine yang telah kita buat adalah untuk menjalankan 
     ```R
     systemctl restart nginx
     ```
-11. Akses `http:<IP Publik>` pada web browser.
+11. Akses `http:<IP Publik>` pada web browser.<br><img src="image/deploy.png" style="width:500px"/>
 
 ## Database
+Microsoft azure memiliki berbagai macam layanan database, baik SQL maupun no SQL. Di sini, kita akan mencoba membuat dan mengakses database postgresql di azure.
 ### Membuat Database PostgreSQL di Azure
-### Mengakses Database melalui psql pada VM
-### Mengakses Database melalui pgAdmin Local
-
+Menyewa dan membuat database postgreSQL dapat dilakukan dengan mengikuti beberapa langkah berikut:
+1. Buka menu `Create a Resource` yang ada di sidebar lalu cari `postgresql` menggunakan search bar `Search services and marketplace`.<br><img src="image/db-1.png" style="width:500px"/>
+2. Pilih `Azure Database for PostgreSQL Flexible Server` dan klik pada tombol `Create`.<br><img src="image/db-2.png" style="width:500px"/>
+3. Pilih dan masukkan resource group, nama server serta region yang sesuai.<br><img src="image/db-3.png" style="width:500px"/>
+4. Pada bagian `compute + storage`, klik `configure server`.<br><img src="image/db-4.png" style="width:500px"/>
+5. Pilih `Burstable` pada `Compute tier`, 'Standard_B1ms' pada `Compute size`, `32 GiB` pada `Storage size`, dan `P4 (120 iops)` pada `Performance Tier`. Jika sudah, tekan `save`.<br><img src="image/db-5.png" style="width:500px"/>
+6. Masukkan admin username dan password pada bagian autentikasi, lalu lanjutkan proses `Review + create`.<br><img src="image/db-6.png" style="width:500px"/>
+### Mengakses Database PostgreSQL melalui psql di VM Ubuntu
+Pada bagian ini, kita akan mencoba mengakses database dari VM dengan menggunakan psql (CLI untuk postgreSQL). Akses ke database dapat dilakukan dengan langkah-langkah berikut:
+1. Buka postgreSQL pada Azure Portal kemudian pilih menu networking.<br><img src="image/psql-1.png" style="width:500px"/>
+2. Akses ke database dibatasi untuk IP tertentu. Karenanya, kita perlu menambahkan IP VM pada Firewall Rules yang ada pada menu networking. Isi kolom `start ip address` dan `end ip address` dengan IP dari VM yang telah kita buat. Kemudian, kita perlu menyimpan konfigurasi firewall dengan menekan tombol save yang ada di sebelah kiri atas.<br><img src="image/psql-2.png" style="width:500px"/>
+3. Selanjutnya, pilih menu `connect`. Di situ tersedia beberapa cara akses ke database.<br><img src="image/psql-3.png" style="width:500px"/>
+4. Command untuk mengakses database melalui VM dapat dilihat pada bagian `Connect from browser or locally`.
+5. Akses VM dan download psql dengan command berikut
+    ```R
+    sudo apt-get update
+    sudo apt-get install postgresql -y
+    wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+    ```
+6. Akses database berdasarkan command di poin 4 dengan menambahkan database yang ingin diakses, kemudian masukkan password yang sesuai.<br><img src="image/psql-4.png" style="width:500px"/>
+Selain menggunakan psql, kita juga dapat mengakses melalui pgAdmin dengan mengikuti langkah-langkah yang ada pada menu `Connect` > `pgAdmin4`<br><img src="image/pgadmin.png" style="width:500px"/>
