@@ -128,4 +128,5 @@ Pada bagian ini, kita akan mencoba mengakses database dari VM dengan menggunakan
     wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
     ```
 6. Akses database berdasarkan command di poin 4 dengan menambahkan database yang ingin diakses, kemudian masukkan password yang sesuai.<br><img src="image/psql-4.png" style="width:500px"/>
+<br>
 Selain menggunakan psql, kita juga dapat mengakses melalui pgAdmin dengan mengikuti langkah-langkah yang ada pada menu `Connect` > `pgAdmin4`<br><img src="image/pgadmin.png" style="width:500px"/>
